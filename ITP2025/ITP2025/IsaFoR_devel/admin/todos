@@ -1,0 +1,2 @@
+find thys/ -name '*.thy' | xargs grep "\(TODO\)\|\(FIXME\)\|\(sorry\)\|\([^Ll]oops\)"
+

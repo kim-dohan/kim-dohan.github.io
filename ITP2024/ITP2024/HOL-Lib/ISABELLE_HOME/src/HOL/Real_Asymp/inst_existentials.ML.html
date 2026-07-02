@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="isabelle.css"/>
+<title>File ‹inst_existentials.ML›</title>
+</head>
+
+
+<body>
+<div class="head">
+<h1>File ‹inst_existentials.ML›</h1>
+</div>
+
+<pre class="source"><span class="keyword1"><span class="keyword"><span>signature</span></span></span><span> </span><span class="entity"><span>INST_EXISTENTIALS</span></span><span> </span><span class="main"><span>=</span></span><span>
+</span><span class="keyword2"><span class="keyword"><span>sig</span></span></span><span>
+  </span><span class="keyword1"><span class="keyword"><span>val</span></span></span><span> tac </span><span class="main"><span>:</span></span><span> </span><span class="entity"><span>Proof.context</span></span><span> </span><span class="main"><span>-&gt;</span></span><span> </span><span>term</span><span> </span><span>list</span><span> </span><span class="main"><span>-&gt;</span></span><span> </span><span>int</span><span> </span><span class="main"><span>-&gt;</span></span><span> </span><span>tactic</span><span>
+</span><span class="keyword2"><span class="keyword"><span>end</span></span></span><span>
+
+</span><span class="keyword1"><span class="keyword"><span>structure</span></span></span><span> </span><span class="entity"><span>Inst_Existentials</span></span><span> </span><span class="main"><span>:</span></span><span> </span><span class="entity"><span>INST_EXISTENTIALS</span></span><span> </span><span class="main"><span>=</span></span><span>
+</span><span class="keyword2"><span class="keyword"><span>struct</span></span></span><span>
+
+</span><span class="keyword1"><span class="keyword"><span>fun</span></span></span><span> </span><span class="entity"><span>tac</span></span><span> </span><span class="entity"><span>ctxt</span></span><span> </span><span class="main"><span>[</span></span><span class="main"><span>]</span></span><span> </span><span class="main"><span>=</span></span><span> </span><span>TRY</span><span> </span><span>o</span><span> </span><span>REPEAT_ALL_NEW</span><span> </span><span class="main"><span>(</span></span><span>resolve_tac</span><span> </span><span class="entity"><span>ctxt</span></span><span> </span><span class="antiquoted"><span class="entity"><span class="antiquote"><span>@{</span></span><span class="operator"><span>thms</span></span><span> </span><a class="entity_ref" href="../../../../../../HOL/HOL/HOL.html#HOL.conjI|fact"><span>HOL.conjI</span></a><span class="antiquote"><span>}</span></span></span></span><span class="main"><span>)</span></span><span>
+  </span><span class="main"><span>|</span></span><span> </span><span class="entity"><span>tac</span></span><span> </span><span class="entity"><span>ctxt</span></span><span> </span><span class="main"><span>(</span></span><span class="entity"><span>t</span></span><span> </span><span>::</span><span> </span><span class="entity"><span>ts</span></span><span class="main"><span>)</span></span><span> </span><span class="main"><span>=</span></span><span>
+      </span><span class="main"><span>(</span></span><span>TRY</span><span> </span><span>o</span><span> </span><span>REPEAT_ALL_NEW</span><span> </span><span class="main"><span>(</span></span><span>resolve_tac</span><span> </span><span class="entity"><span>ctxt</span></span><span> </span><span class="antiquoted"><span class="entity"><span class="antiquote"><span>@{</span></span><span class="operator"><span>thms</span></span><span> </span><a class="entity_ref" href="../../../../../../HOL/HOL/HOL.html#HOL.conjI|fact"><span>HOL.conjI</span></a><span class="antiquote"><span>}</span></span></span></span><span class="main"><span>)</span></span><span class="main"><span>)</span></span><span>
+      </span><span>THEN_ALL_NEW</span><span> </span><span class="main"><span>(</span></span><span>TRY</span><span> </span><span>o</span><span> </span><span class="main"><span>(</span></span><span>
+        </span><span class="keyword2"><span class="keyword"><span>let</span></span></span><span>
+          </span><span class="keyword1"><span class="keyword"><span>val</span></span></span><span> </span><span class="entity"><span>thm</span></span><span> </span><span class="main"><span>=</span></span><span> </span><span>Drule.infer_instantiate'</span><span> </span><span class="entity"><span>ctxt</span></span><span> </span><span class="main"><span>[</span></span><span>NONE</span><span class="main"><span>,</span></span><span> </span><span>SOME</span><span> </span><span class="main"><span>(</span></span><span>Thm.cterm_of</span><span> </span><span class="entity"><span>ctxt</span></span><span> </span><span class="entity"><span>t</span></span><span class="main"><span>)</span></span><span class="main"><span>]</span></span><span> </span><span class="antiquoted"><span class="entity"><span class="antiquote"><span>@{</span></span><span class="operator"><span>thm</span></span><span> </span><a class="entity_ref" href="../../../../../../HOL/HOL/HOL.html#HOL.exI|fact"><span>HOL.exI</span></a><span class="antiquote"><span>}</span></span></span></span><span>
+        </span><span class="keyword2"><span class="keyword"><span>in</span></span></span><span>
+          </span><span>resolve_tac</span><span> </span><span class="entity"><span>ctxt</span></span><span> </span><span class="main"><span>[</span></span><span class="entity"><span>thm</span></span><span class="main"><span>]</span></span><span> </span><span>THEN'</span><span> </span><span class="entity"><span>tac</span></span><span> </span><span class="entity"><span>ctxt</span></span><span> </span><span class="entity"><span>ts</span></span><span>
+        </span><span class="keyword2"><span class="keyword"><span>end</span></span></span><span class="main"><span>)</span></span><span class="main"><span>)</span></span><span>
+
+</span><span class="keyword2"><span class="keyword"><span>end</span></span></span></pre>
+</body>
+
+</html>

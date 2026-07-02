@@ -1,0 +1,32 @@
+# Static CeTA with the help of docker and musl
+
+Uses alpine-linux with musl in a docker container to build a fully statically linked executable,
+*without any glibc nonsense*!
+
+## Preparation
+
+Place this directory in you CeTA root directory.
+
+CeTA
+├── docker-scripts    <--------- like this !!
+│   ├── build-docker-static.sh
+│   ├── build.sh
+│   ├── Dockerfile
+│   └── README
+├── Makefile
+├── src
+...
+
+in the `docker-scripts` directory run
+
+    docker build -t alpine:ceta-build .
+
+to create the docker image (once and for all)
+
+## Usage
+
+To build ceta run:
+
+    ./docker-scripts/build-docker-static.sh
+
+in the CeTA root directory.

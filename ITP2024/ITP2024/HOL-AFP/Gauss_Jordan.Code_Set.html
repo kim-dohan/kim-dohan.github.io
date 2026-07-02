@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="isabelle.css"/>
+<title>Theory Gauss_Jordan.Code_Set</title>
+</head>
+
+
+<body>
+<div class="head">
+<h1>Theory Gauss_Jordan.Code_Set</h1>
+</div>
+
+<pre class="source"><span class="comment1"><span>(*  
+    Title:      Code_Set.thy
+    Author:     Jose Divasón &lt;jose.divasonm at unirioja.es&gt;
+    Author:     Jesús Aransay &lt;jesus-maria.aransay at unirioja.es&gt;
+*)</span></span><span>
+
+</span><span class="keyword1"><span class="command"><span>section</span></span></span><span> </span><span class="quoted"><span class="plain_text"><span>"Code set"</span></span></span><span>
+
+</span><span class="keyword1"><span class="command"><span>theory</span></span></span><span> </span><a href="Gauss_Jordan.Code_Set.html"><span>Code_Set</span></a><span>
+</span><span class="keyword2"><span class="keyword"><span>imports</span></span></span><span>
+  </span><span class="quoted"><span>"</span><a href="../../HOL/HOL-Library/Code_Cardinality.html"><span>HOL-Library.Code_Cardinality</span></a><span>"</span></span><span>
+</span><span class="keyword2"><span class="keyword"><span>begin</span></span></span><span>
+
+</span><span class="keyword1"><span class="command"><span>text</span></span></span><span class="quoted"><span class="plain_text"><span>‹The following setup could help to get code generation for List.coset, 
+  but it neither works correctly it complains that code
+  equations for remove are missed, even when List.coset should be rewritten
+  to an enum:›</span></span></span><span>
+
+</span><span class="keyword1"><span class="command"><span>declare</span></span></span><span> </span><a class="entity_ref" href="../../HOL/HOL/List.html#List.minus_coset_filter|fact"><span>minus_coset_filter</span></a><span> </span><span class="main"><span>[</span></span><span class="operator"><span>code</span></span><span> </span><span class="quasi_keyword"><span>del</span></span><span class="main"><span>]</span></span><span>
+</span><span class="keyword1"><span class="command"><span>declare</span></span></span><span> </span><a class="entity_ref" href="../../HOL/HOL/List.html#List.remove_code|fact"><span>remove_code</span></a><span class="main"><span>(</span></span><span>2</span><span class="main"><span>)</span></span><span> </span><span class="main"><span>[</span></span><span class="operator"><span>code</span></span><span> </span><span class="quasi_keyword"><span>del</span></span><span class="main"><span>]</span></span><span>
+</span><span class="keyword1"><span class="command"><span>declare</span></span></span><span> </span><a class="entity_ref" href="../../HOL/HOL/List.html#List.insert_code|fact"><span>insert_code</span></a><span class="main"><span>(</span></span><span>2</span><span class="main"><span>)</span></span><span> </span><span class="main"><span>[</span></span><span class="operator"><span>code</span></span><span> </span><span class="quasi_keyword"><span>del</span></span><span class="main"><span>]</span></span><span>
+</span><span class="keyword1"><span class="command"><span>declare</span></span></span><span> </span><a class="entity_ref" href="../../HOL/HOL/List.html#List.inter_coset_fold|fact"><span>inter_coset_fold</span></a><span> </span><span class="main"><span>[</span></span><span class="operator"><span>code</span></span><span> </span><span class="quasi_keyword"><span>del</span></span><span class="main"><span>]</span></span><span>
+</span><span class="keyword1"><span class="command"><span>declare</span></span></span><span> </span><a class="entity_ref" href="../../HOL/HOL/List.html#List.compl_coset|fact"><span>compl_coset</span></a><span class="main"><span>[</span></span><span class="operator"><span>code</span></span><span> </span><span class="quasi_keyword"><span>del</span></span><span class="main"><span>]</span></span><span>
+</span><span class="keyword1"><span class="command"><span>declare</span></span></span><span> </span><a class="entity_ref" href="../../HOL/HOL-Library/Code_Cardinality.html#Code_Cardinality.card&apos;_code|fact"><span>Code_Cardinality.card'_code</span></a><span class="main"><span>(</span></span><span>2</span><span class="main"><span>)</span></span><span class="main"><span>[</span></span><span class="operator"><span>code</span></span><span> </span><span class="quasi_keyword"><span>del</span></span><span class="main"><span>]</span></span><span>
+
+</span><span class="keyword1"><span class="command"><span>code_datatype</span></span></span><span> </span><span class="quoted"><a class="entity_ref" href="../../HOL/HOL/List.html#List.list.set|const"><span>set</span></a></span><span>
+
+</span><span class="keyword1"><span class="command"><span>text</span></span></span><span class="quoted"><span class="plain_text"><span>‹The following code equation could be useful to avoid the problem of
+  code generation for List.coset []:›</span></span></span><span>
+
+</span><span class="keyword1"><span class="command"><span>lemma</span></span></span><span> </span><span class="main"><span>[</span></span><span class="operator"><span>code</span></span><span class="main"><span>]</span></span><span class="main"><span>:</span></span><span> </span><span class="quoted"><span class="quoted"><span>"</span><a class="entity_ref" href="../../HOL/HOL/List.html#List.coset|const"><span>List.coset</span></a><span> </span><span class="main"><span>(</span></span><span class="free"><span>l</span></span><span class="main"><span>::</span></span><span class="tfree"><span>'a</span></span><span class="main"><span>::</span></span><a class="entity_ref" href="../../HOL/HOL/Enum.html#Enum.enum|class"><span>enum</span></a><span> </span><a class="entity_ref" href="../../HOL/HOL/List.html#List.list|type"><span>list</span></a><span class="main"><span>)</span></span><span> </span><span class="main"><a class="entity_ref" href="../../HOL/HOL/HOL.html#HOL.eq|const"><span>=</span></a></span><span> </span><a class="entity_ref" href="../../HOL/HOL/List.html#List.list.set|const"><span>set</span></a><span> </span><span class="main"><span>(</span></span><a class="entity_ref" href="../../HOL/HOL/Enum.html#Enum.enum_class.enum|const"><span>enum_class.enum</span></a><span class="main"><span>)</span></span><span> </span><span class="main"><a class="entity_ref" href="../../HOL/HOL/Groups.html#Groups.minus_class.minus|const"><span>-</span></a></span><span> </span><a class="entity_ref" href="../../HOL/HOL/List.html#List.list.set|const"><span>set</span></a><span> </span><span class="free"><span>l</span></span><span>"</span></span></span><span>
+  </span><span class="keyword1"><span class="command"><span>by</span></span></span><span> </span><span class="main"><span>(</span></span><a class="entity_ref" href="../../HOL/HOL/ISABELLE_HOME/src/HOL/Tools/Metis/metis_tactic.ML.html#Metis.metis|method"><span class="operator"><span>metis</span></span></a><span> </span><a class="entity_ref" href="../../HOL/HOL/Set.html#Set.Compl_eq_Diff_UNIV|fact"><span>Compl_eq_Diff_UNIV</span></a><span> </span><a class="entity_ref" href="../../HOL/HOL/List.html#List.coset_def|fact"><span>coset_def</span></a><span> </span><a class="entity_ref" href="../../HOL/HOL/Enum.html#Enum.enum_class.enum_UNIV|fact"><span>enum_UNIV</span></a><span class="main"><span>)</span></span><span>
+
+</span><span class="keyword1"><span class="command"><span>text</span></span></span><span class="quoted"><span class="plain_text"><span>‹Now the following examples work:›</span></span></span><span>
+
+</span><span class="keyword1"><span class="command"><span>value</span></span></span><span> </span><span class="quoted"><span class="quoted"><span>"</span><a class="entity_ref" href="../../HOL/HOL/Set.html#Set.UNIV|const"><span>UNIV</span></a><span class="main"><span>::</span></span><a class="entity_ref" href="../../HOL/HOL/HOL.html#HOL.bool|type"><span>bool</span></a><span> </span><a class="entity_ref" href="../../HOL/HOL/Set.html#Set.set|type"><span>set</span></a><span>"</span></span></span><span>
+</span><span class="keyword1"><span class="command"><span>value</span></span></span><span> </span><span class="quoted"><span class="quoted"><span>"</span><a class="entity_ref" href="../../HOL/HOL/List.html#List.coset|const"><span>List.coset</span></a><span> </span><span class="main"><span>(</span></span><span class="main"><a class="entity_ref" href="../../HOL/HOL/List.html#List.list.Nil|const"><span>[]</span></a></span><span class="main"><span>::</span></span><a class="entity_ref" href="../../HOL/HOL/HOL.html#HOL.bool|type"><span>bool</span></a><span> </span><a class="entity_ref" href="../../HOL/HOL/List.html#List.list|type"><span>list</span></a><span class="main"><span>)</span></span><span>"</span></span></span><span>
+</span><span class="keyword1"><span class="command"><span>value</span></span></span><span> </span><span class="quoted"><span class="quoted"><span>"</span><a class="entity_ref" href="../../HOL/HOL/Set.html#Set.UNIV|const"><span>UNIV</span></a><span class="main"><span>::</span></span><a class="entity_ref" href="../../HOL/HOL/Enum.html#Enum.finite_2|type"><span>Enum.finite_2</span></a><span> </span><a class="entity_ref" href="../../HOL/HOL/Set.html#Set.set|type"><span>set</span></a><span>"</span></span></span><span>
+</span><span class="keyword1"><span class="command"><span>value</span></span></span><span> </span><span class="quoted"><span class="quoted"><span>"</span><a class="entity_ref" href="../../HOL/HOL/List.html#List.coset|const"><span>List.coset</span></a><span> </span><span class="main"><span>(</span></span><span class="main"><a class="entity_ref" href="../../HOL/HOL/List.html#List.list.Nil|const"><span>[]</span></a></span><span class="main"><span>::</span></span><a class="entity_ref" href="../../HOL/HOL/Enum.html#Enum.finite_2|type"><span>Enum.finite_2</span></a><span> </span><a class="entity_ref" href="../../HOL/HOL/List.html#List.list|type"><span>list</span></a><span class="main"><span>)</span></span><span>"</span></span></span><span>
+</span><span class="keyword1"><span class="command"><span>value</span></span></span><span> </span><span class="quoted"><span class="quoted"><span>"</span><a class="entity_ref" href="../../HOL/HOL/List.html#List.coset|const"><span>List.coset</span></a><span> </span><span class="main"><span>(</span></span><span class="main"><a class="entity_ref" href="../../HOL/HOL/List.html#List.list.Nil|const"><span>[]</span></a></span><span class="main"><span>::</span></span><a class="entity_ref" href="../../HOL/HOL/Enum.html#Enum.finite_5|type"><span>Enum.finite_5</span></a><span> </span><a class="entity_ref" href="../../HOL/HOL/List.html#List.list|type"><span>list</span></a><span class="main"><span>)</span></span><span>"</span></span></span><span>
+
+</span><span class="keyword2"><span class="keyword"><span>end</span></span></span><span>
+</span></pre>
+</body>
+
+</html>

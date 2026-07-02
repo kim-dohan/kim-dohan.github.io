@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="isabelle.css"/>
+<title>Theory CAVA_Base.Statistics</title>
+</head>
+
+
+<body>
+<div class="head">
+<h1>Theory CAVA_Base.Statistics</h1>
+</div>
+
+<pre class="source"><span class="keyword1"><span class="command"><span>section</span></span></span><span> </span><span class="quoted"><span class="plain_text"><span>‹Collecting Statistics about Algorithms›</span></span></span><span>
+</span><span class="keyword1"><span class="command"><span>theory</span></span></span><span> </span><a href="CAVA_Base.Statistics.html"><span>Statistics</span></a><span>
+</span><span class="keyword2"><span class="keyword"><span>imports</span></span></span><span> </span><a href="../../HOL/HOL/Main.html"><span>Main</span></a><span>
+</span><span class="keyword2"><span class="keyword"><span>begin</span></span></span><span>
+
+</span><span class="keyword1"><span class="command"><span>text</span></span></span><span> </span><span class="quoted"><span class="plain_text"><span>‹
+  This theory contains an infrastructure to collect statistics about
+  algorithms by instrumenting the formalization with dummy constants that
+  get translated to functions that update the statistics as a side-effect.
+›</span></span></span><span>
+
+</span><span class="keyword1"><span class="command"><span>code_printing</span></span></span><span>
+  </span><span class="comment1"><span>(* HACK: code_modules seem to be sorted alphabetically when written to SML. 
+    However, other code_modules will depend on this, so we put an A in front 
+    of the name to get this first. *)</span></span><span>
+  </span><span class="keyword2"><span class="keyword"><span>code_module</span></span></span><span> AStatistics </span><span class="main"><span>⇀</span></span><span> </span><span class="main"><span>(</span></span><span>SML</span><span class="main"><span>)</span></span><span> </span><span class="quoted"><span>‹
+  structure Statistics : sig
+    type stat_entry = string * (unit -&gt; bool) * (unit -&gt; string)
+  
+    val register_stat : stat_entry -&gt; unit
+    val get_active_stats : unit -&gt; (string * string) list
+    val pretty_stats : (string * string) list -&gt; string
+
+  end = struct
+    type stat_entry = string * (unit -&gt; bool) * (unit -&gt; string)
+    val stats : stat_entry list Unsynchronized.ref = Unsynchronized.ref []
+  
+    fun register_stat e = stats := e :: !stats
+
+    fun get_active_stats () = let
+      fun flt [] = []
+        | flt ((n,a,s)::l) = if a () then (n,s ()) :: flt l else flt l
+
+    in flt (!stats)
+    end
+
+    fun pretty_stats [] = ""
+      | pretty_stats ((n,s)::l) = "=== " ^ n ^ " ===\n" ^ s ^ "\n" ^ pretty_stats l
+  end
+
+(* Argh! Functors not compatible with ML_val command!
+  functor Timer () : sig 
+    val reset : unit -&gt; unit
+    val start : unit -&gt; unit
+    val stop : unit -&gt; unit
+    val set : Time.time -&gt; unit
+    val get : unit -&gt; Time.time
+    val pretty : unit -&gt; string
+  end = struct
+
+    open Time;
+
+    val time : Time.time Unsynchronized.ref = Unsynchronized.ref Time.zeroTime
+    val running : bool Unsynchronized.ref = Unsynchronized.ref false
+    val start_time : Time.time Unsynchronized.ref = Unsynchronized.ref Time.zeroTime
+        
+    fun reset () = (
+      time := Time.zeroTime;
+      running := false;
+      start_time := Time.zeroTime
+    )
+
+    fun start () = 
+      if !running then 
+        () 
+      else (
+        running := true;
+        start_time := Time.now ()
+      )
+
+    fun this_runs_time () = 
+      if !running then 
+        Time.now () - !start_time 
+      else 
+        Time.zeroTime
+
+    fun stop () = (
+      time := !time + this_runs_time ();
+      running := false
+    )
+
+    fun get () = !time + this_runs_time ()
+    fun set t = time := t - this_runs_time ()
+  
+    fun pretty () = Time.toString (!time) ^ "s"
+  end
+  *)
+
+›</span></span><span>
+</span><span class="keyword1"><span class="command"><span>code_reserved</span></span></span><span> SML Statistics Timer
+
+
+</span><span class="keyword2"><span class="keyword"><span>end</span></span></span><span>
+</span></pre>
+</body>
+
+</html>

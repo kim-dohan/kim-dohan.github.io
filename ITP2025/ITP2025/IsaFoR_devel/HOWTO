@@ -1,0 +1,31 @@
+* How to Set Up the AFP
+IsaFoR is based on the archive of formal proofs (AFP). The following local
+setup is necessary:
+
+  - initial steps when working on a stable version of the AFP
+
+    1) Download and unpack the AFP corresponding to the version of Isabelle you
+    are using from
+      
+      https://www.isa-afp.org/
+
+  - initial steps when working on the development version of the AFP
+
+    1) Create a local clone of the AFP via
+
+      hg clone ssh://colo2-c703.uibk.ac.at//mercurial/afp
+
+    (Note that this is just an intermediate clone of the real AFP for IsaFoR,
+    which will be synchronized with the real AFP regularly.)
+
+  - common steps
+
+    2) In your $ISABELLE_HOME_USER/etc/settings add
+    init_component "<path to local copy of AFP>"
+
+    3) Create the heap image HOL-AFP via
+
+      isabelle build -d '$ISAFOR' -b HOL-AFP
+
+    4) Base your IsaFoR developments on the heap image HOL-AFP.
+

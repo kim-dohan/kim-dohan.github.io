@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="isabelle.css"/>
+<title>Theory First_Order_Terms.Lists_are_Infinite</title>
+</head>
+
+
+<body>
+<div class="head">
+<h1>Theory First_Order_Terms.Lists_are_Infinite</h1>
+</div>
+
+<pre class="source"><span class="comment1"><span>(*
+Author:  Christian Sternagel &lt;c.sternagel@gmail.com&gt;
+Author:  René Thiemann &lt;rene.thiemann@uibk.ac.at&gt;
+License: LGPL
+*)</span></span><span>
+</span><span class="keyword1"><span class="command"><span>subsection</span></span></span><span> </span><span class="quoted"><span class="plain_text"><span>‹Make lists instances of the infinite-class.›</span></span></span><span>
+
+</span><span class="keyword1"><span class="command"><span>theory</span></span></span><span> </span><a href="First_Order_Terms.Lists_are_Infinite.html"><span>Lists_are_Infinite</span></a><span>
+  </span><span class="keyword2"><span class="keyword"><span>imports</span></span></span><span> </span><a href="Fresh_Identifiers.Fresh.html"><span>Fresh_Identifiers.Fresh</span></a><span>
+</span><span class="keyword2"><span class="keyword"><span>begin</span></span></span><span>
+
+</span><span class="keyword1"><span class="command"><span class="entity_def" id="Lists_are_Infinite.arity_infinite_list|fact"><span class="entity_def" id="Lists_are_Infinite.arity_infinite_list|thm"><span>instance</span></span></span></span></span><span> </span><a class="entity_ref" href="../../HOL/HOL/List.html#List.list|type"><span>list</span></a><span> </span><span class="main"><span>::</span></span><span> </span><span class="main"><span>(</span></span><span class="quoted"><a class="entity_ref" href="../../HOL/HOL/HOL.html#HOL.type|class"><span>type</span></a></span><span class="main"><span>)</span></span><span> </span><span class="quoted"><a class="entity_ref" href="Fresh_Identifiers.Fresh.html#Fresh.infinite|class"><span>infinite</span></a></span><span>
+  </span><span class="keyword1"><span class="command"><span>by</span></span></span><span> </span><span class="main"><span>(</span></span><span class="operator"><span>intro_classes</span></span><span class="main"><span class="keyword3"><span>,</span></span></span><span> </span><a class="entity_ref" href="../../HOL/HOL/ISABELLE_HOME/src/Provers/classical.ML.html#HOL.rule|method"><span class="operator"><span>rule</span></span></a><span> </span><a class="entity_ref" href="../../HOL/HOL/List.html#List.infinite_UNIV_listI|fact"><span>infinite_UNIV_listI</span></a><span class="main"><span>)</span></span><span>
+
+</span><span class="keyword2"><span class="keyword"><span>end</span></span></span></pre>
+</body>
+
+</html>
