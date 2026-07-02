@@ -1,6 +1,0 @@
-#!/bin/bash
-
-source ./admin/hg_author_info.sh
-
-addauthorinfo "$@"
-
