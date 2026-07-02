@@ -1,0 +1,40 @@
+#########################################################
+# using IsaFoR with the development version of Isabelle #
+#########################################################
+
+# if command "hg" is not available, install mercurial
+
+# get clones of Isabelle and AFP repositories
+hg clone http://isabelle.in.tum.de/repos/isabelle/
+hg clone ssh://hg@foss.heptapod.net/isa-afp/afp-devel
+
+# create file
+# ~/.isabelle/etc/settings
+# (if it does not exist) and add the following lines
+init_components "$ISABELLE_HOME_USER/contrib" "$ISABELLE_HOME/Admin/components/main"
+
+# look up the revision numbers of isabelle and afp in
+# <path to IsaFoR>/COMPATIBILITY
+# and update both to the correct revision numbers like
+cd <path to isabelle>
+hg update -r <isabelle revision number from COMPATIBILITY>
+cd <path to afp-devel>
+hg update -r <afp revision number from COMPATIBILITY>
+
+# set PATH such that "isabelle" is taken from <path to isabelle>/bin/isabelle
+
+# download and install missing components
+isabelle components -a
+
+#######################
+# working with IsaFoR #
+#######################
+
+cd <path to IsaFoR>
+
+# start jedit using heap images like IsaFoR_1 when e.g. working on
+# thys/Termination_and_Complexity/Bounded_Increase.thy
+# the required heap images will be generated automatically
+
+isabelle jedit -d thys -l IsaFoR_1 thys/Termination_and_Complexity/Bounded_Increase.thy &
+

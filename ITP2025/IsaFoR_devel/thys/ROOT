@@ -1,0 +1,382 @@
+chapter IsaFoR
+
+session "HOL-Lib" in "Session_Dirs/HOL-Lib" = "HOL-Library" +
+  description \<open>Theories that are not part of HOL but used by IsaFoR\<close>
+  options [document = false]
+  sessions
+    "HOL-Analysis"
+    "HOL-Computational_Algebra"
+    "HOL-Algebra"
+    "HOL-Number_Theory"
+    "HOL-Types_To_Sets"
+    "HOL-Eisbach"
+    "HOL-Cardinals"
+    "HOL-ex"
+    "HOL-Real_Asymp"
+  theories
+    "HOL-Analysis.Analysis"
+    "HOL-Analysis.Brouwer_Fixpoint"
+    "HOL-Analysis.Determinants"
+    "HOL-Computational_Algebra.Field_as_Ring"
+    "HOL-Computational_Algebra.Fraction_Field"
+    "HOL-Computational_Algebra.Fundamental_Theorem_Algebra"
+    "HOL-Computational_Algebra.Polynomial_Factorial"
+    "HOL-Algebra.Ring"
+    "HOL-Algebra.Module"
+    "HOL-Algebra.Divisibility"
+    "HOL-Number_Theory.Residues"
+    "HOL-Types_To_Sets.Types_To_Sets"
+    "HOL-Eisbach.Eisbach"
+    "HOL-Cardinals.Order_Union"
+    "HOL-Cardinals.Wellorder_Extension"
+    "HOL-ex.Quicksort"
+    "HOL-Real_Asymp.Real_Asymp"
+
+
+session "HOL-AFP" in "Session_Dirs/HOL-AFP" = "HOL-Lib" +
+  description \<open>Theories from the Archive of Formal Proofs that are used by IsaFoR\<close>
+  options [document = false]
+  sessions
+     "Abstract-Rewriting"
+     Berlekamp_Zassenhaus
+     Certification_Monads
+     Collections
+     Containers
+     Deriving
+     "Decreasing-Diagrams-II"
+     Echelon_Form
+     "Efficient-Mergesort"
+     Efficient_Weighted_Path_Order
+     Farkas
+     First_Order_Terms
+     First_Order_Rewriting
+     Fresh_Identifiers
+     Gabow_SCC
+     Gauss_Jordan
+     Jordan_Normal_Form
+     Knuth_Bendix_Order
+     Linear_Inequalities
+     "List-Index"
+     Partial_Function_MR
+     Pattern_Completeness
+     Perron_Frobenius
+     Polynomial_Factorization
+     Polynomials
+     Proof_Terms_Term_Rewriting
+     Real_Impl
+     "Regular-Sets"
+     Show
+     Simplex
+     Sturm_Sequences
+     "Transitive-Closure"
+     "Transitive-Closure-II"
+     VectorSpace
+     Vickrey_Clarke_Groves
+     Well_Quasi_Orders
+     Weighted_Path_Order
+     XML
+  theories
+    "Abstract-Rewriting.SN_Order_Carrier"
+    "Abstract-Rewriting.Relative_Rewriting"
+    Berlekamp_Zassenhaus.Code_Abort_Gcd
+    Containers.Containers
+    Containers.Compatibility_Containers_Regular_Sets
+    Certification_Monads.Check_Monad
+    Certification_Monads.Strict_Sum
+    Collections.Refine_Dflt
+    Deriving.Compare_Order_Instances
+    Deriving.RBT_Compare_Order_Impl
+    Deriving.RBT_Comparator_Impl
+    Deriving.Derive
+    "Decreasing-Diagrams-II.Decreasing_Diagrams_II"
+    Echelon_Form.Cayley_Hamilton_Compatible
+    "Efficient-Mergesort.Efficient_Sort"
+    Efficient_Weighted_Path_Order.RPO_Mem_Impl
+    Farkas.Matrix_Farkas
+    First_Order_Rewriting.Rewrite_Relations_Impl
+    First_Order_Rewriting.Orthogonality
+    First_Order_Rewriting.Unification_More
+    First_Order_Rewriting.Unifiers_More
+    First_Order_Terms.Matching
+    First_Order_Terms.Subsumption
+    First_Order_Terms.Unification_String
+    First_Order_Terms.Term_More
+    Fresh_Identifiers.Fresh
+    Gabow_SCC.Gabow_SCC_Code
+    "HOL-Library.IArray"
+    Gauss_Jordan.Elementary_Operations
+    Jordan_Normal_Form.Matrix_Complexity
+    Jordan_Normal_Form.Jordan_Normal_Form_Existence
+    Jordan_Normal_Form.Jordan_Normal_Form_Uniqueness
+    Jordan_Normal_Form.Matrix_Impl
+    Knuth_Bendix_Order.KBO
+    Linear_Inequalities.Mixed_Integer_Solutions
+    "List-Index.List_Index"
+    Partial_Function_MR.Partial_Function_MR
+    Pattern_Completeness.Pattern_Completeness
+    Perron_Frobenius.Check_Matrix_Growth
+    Polynomials.Show_Polynomials
+    Polynomial_Factorization.Missing_Multiset
+    Proof_Terms_Term_Rewriting.Labels_and_Overlaps
+    Proof_Terms_Term_Rewriting.Orthogonal_PT
+    Proof_Terms_Term_Rewriting.Proof_Terms
+    Proof_Terms_Term_Rewriting.Redex_Patterns
+    Proof_Terms_Term_Rewriting.Residual_Join_Deletion
+    Real_Impl.Real_Unique_Impl
+    "Regular-Sets.Regexp_Method"
+    Show.Number_Parser
+    Show.Show_Complex
+    Show.Show_Poly
+    Show.Shows_Literal
+    Simplex.Simplex_Incremental
+    Sturm_Sequences.Sturm_Method
+    "Transitive-Closure.Transitive_Closure_List_Impl"
+    "Transitive-Closure.Transitive_Closure_RBT_Impl"
+    "Transitive-Closure.RBT_Map_Set_Extension"
+    "Transitive-Closure-II.RTrancl"
+    VectorSpace.VectorSpace
+    Vickrey_Clarke_Groves.Partitions
+    Well_Quasi_Orders.Kruskal
+    Weighted_Path_Order.Multiset_Extension2_Impl
+    Weighted_Path_Order.RPO
+    XML.Xml
+
+(* LOGICAL Session Names for qualified imports *)
+session Auxx in Auxiliaries = "HOL-AFP" +
+  options [document = false]
+  theories
+    All_of_Auxiliaries
+
+
+session TRS in Rewriting = "HOL-AFP" +
+  options [document = false]
+  sessions
+    Auxx
+    First_Order_Rewriting
+  theories
+    All_of_Rewriting
+
+session AC_TRS in AC_Rewriting = "HOL-AFP" +
+  options [document = false]
+  sessions
+    TRS
+  theories
+    All_of_AC_Rewriting
+
+
+session Ord in Orderings = "HOL-AFP" +
+  options [document = false]
+  sessions
+    Auxx
+    TRS
+    AC_TRS
+  theories
+    All_of_Orderings
+
+session TA in Tree_Automata = "HOL-AFP" +
+  options [document = false]
+  sessions
+    TRS
+    Ord
+  theories
+    All_of_Tree_Automata
+
+session Framework in Framework = "HOL-AFP" +
+  options [document = false]
+  sessions
+    AC_TRS
+    Ord
+    TRS
+  theories
+    All_of_Framework
+
+session LTS in LTS = "HOL-AFP" +
+  options [document = false]
+  sessions
+    Ord
+    Framework
+  theories
+    All_of_LTS
+
+session LLVM in LLVM = "HOL-AFP" +
+   options [document = false]
+   sessions
+     Proof_Checker
+   theories
+     LLVM_Syntax
+     LLVM_State
+     LLVM_Step
+
+session Norm_Equiv in Normalization_Equivalence = "HOL-AFP" +
+  options [document = false]
+  sessions
+    Ord
+    TRS
+  theories
+    All_of_Normalization_Equivalence
+
+session Abstract_Completion in Abstract_Completion = "HOL-AFP" +
+  options [document = false]
+  sessions
+    Ord
+    TRS
+    Norm_Equiv
+  theories
+    All_of_Abstract_Completion
+
+session Sem_Lab in Semantic_Labeling = "HOL-AFP" +
+  options [document = false]
+  sessions
+    TRS
+    Framework
+  theories
+    All_of_Semantic_Labeling
+
+session CR in Confluence_and_Completion = IsaFoR_1 +
+  options [document = false]
+  sessions
+    Sem_Lab
+    TA
+    Abstract_Completion
+    Framework
+  theories
+    All_of_Confluence_and_Completion
+
+session Nonreach in Nonreachability = IsaFoR_1 +
+  options [document = false]
+  sessions
+    Ord
+    TA
+    TRS
+    CR
+  theories
+    All_of_Nonreachability
+
+session CTRS in Conditional_Rewriting = IsaFoR_1 +
+  options [document = false]
+  sessions
+    Framework
+    Nonreach
+  theories
+    All_of_Conditional_Rewriting
+
+session Not_SN in Nontermination = IsaFoR_1 +
+  options [document = false]
+  sessions
+    Framework
+    TA
+    CR
+    Sem_Lab
+  theories
+    All_of_Nontermination
+
+session SN in Termination_and_Complexity = IsaFoR_1 +
+  options [document = false]
+  sessions
+    Framework
+    TA
+    CR
+    Sem_Lab
+    Nonreach
+    Not_SN
+  theories
+    All_of_Termination_and_Complexity
+
+session Proof_Checker in Proof_Checker = IsaFoR_2 +
+  options [document = false]
+  sessions
+    SN
+    CTRS
+    LTS
+  theories
+    All_of_Proof_Checker
+
+
+(* Sessions for building IsaFoR *)
+
+session IsaFoR_1 in "Session_Dirs/IsaFoR_1" = "HOL-AFP" +
+  options [document = false]
+  sessions
+    Auxx
+    TRS
+    AC_TRS
+    Ord
+    TA
+    Norm_Equiv
+    Framework
+    Abstract_Completion
+    LTS
+    Sem_Lab
+  theories
+    Auxx.All_of_Auxiliaries
+    TRS.All_of_Rewriting
+    AC_TRS.All_of_AC_Rewriting
+    Ord.All_of_Orderings
+    TA.All_of_Tree_Automata
+    Norm_Equiv.All_of_Normalization_Equivalence
+    Framework.All_of_Framework
+    Abstract_Completion.All_of_Abstract_Completion
+    LTS.All_of_LTS
+    Sem_Lab.All_of_Semantic_Labeling
+
+session IsaFoR_2 in "Session_Dirs/IsaFoR_2" = IsaFoR_1 +
+  options [document = false]
+  sessions
+    CR
+    Nonreach
+    CTRS
+    Not_SN
+    SN
+  theories
+    CR.All_of_Confluence_and_Completion
+    Nonreach.All_of_Nonreachability
+    CTRS.All_of_Conditional_Rewriting
+    Not_SN.All_of_Nontermination
+    SN.All_of_Termination_and_Complexity
+
+session IsaFoR_3 in "Session_Dirs/IsaFoR_3" = IsaFoR_2 +
+  options [document = false]
+  sessions
+    Proof_Checker
+  theories
+    Proof_Checker.All_of_Proof_Checker
+
+
+(* code generation of CeTA *)
+
+session "Code" (ceta) in Code = IsaFoR_3 +
+  description \<open>IsaFoR directory Code\<close>
+  options [document = false]
+  sessions
+     Proof_Checker
+  theories
+     Code_Haskell
+
+(* code generation of CeTA *)
+
+session "CPF_2_to_3" (ceta) in CPF_2_to_3 = "HOL-AFP" +
+  description \<open>IsaFoR directory Code\<close>
+  options [document = false]
+  sessions
+     Auxx
+  theories
+     CPF_2_to_3
+
+session CSTS in "Conditional_Semi_Thue_Systems/" = "HOL-AFP" +
+  description \<open>Theories for both semi-Thue and conditional semi-Thue systems\<close>
+
+  sessions
+    Ord
+    Abstract_Completion
+    Jacobson_Basic_Algebra
+  theories
+    CSTS.String_Rewriting
+    CSTS.ShortLex
+    CSTS.STS_Critical_Pairs
+    CSTS.STS_Completion
+    CSTS.Semi_Thue_Systems
+    CSTS.Conditional_Equational_Theories
+    CSTS.Conditional_Semi_Thue_Systems
+    CSTS.Conditional_String_Rewriting
+    CSTS.CSTS_R_Critical_Pairs
+    CSTS.CSTS_P_Critical_Pairs

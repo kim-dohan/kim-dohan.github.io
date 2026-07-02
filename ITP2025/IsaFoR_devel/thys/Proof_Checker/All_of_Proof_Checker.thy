@@ -1,0 +1,30 @@
+(* Automatically generated file, do not change *)
+theory All_of_Proof_Checker
+  imports
+    CPF_Input_Parser
+    CPF_Parser
+    CPF_Proof_Parser
+    Ceta
+    Ceta_Problem_Spec
+    Ceta_Verifier
+    Check_AC_Termination
+    Check_AL94
+    Check_CRP
+    Check_Completion_Proof
+    Check_Complexity
+    Check_Conditional_CRP
+    Check_Equational_Proof
+    Check_Infeasibility
+    Check_Level_Confluence
+    Check_Nonreachability
+    Check_Nontermination
+    Check_Quasi_Reductive
+    Check_Termination
+    Check_Termination_Common
+    Container_Setup
+    Pre_Ceta
+    Processors
+    Proof_Checker
+    Version
+begin
+end

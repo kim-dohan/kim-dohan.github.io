@@ -1,0 +1,11 @@
+{"kind": "chapter",
+ "items":
+   [{"name": "CSTS",
+     "description":
+       "Theories for both semi-Thue and conditional semi-Thue systems"},
+    {"name": "HOL-AFP",
+     "description":
+       "Theories from the Archive of Formal Proofs that are used by IsaFoR"},
+    {"name": "HOL-Lib",
+     "description":
+       "Theories that are not part of HOL but used by IsaFoR"}]}

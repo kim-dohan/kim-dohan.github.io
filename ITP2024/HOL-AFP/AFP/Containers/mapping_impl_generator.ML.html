@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="isabelle.css"/>
+<title>File ‹mapping_impl_generator.ML›</title>
+</head>
+
+
+<body>
+<div class="head">
+<h1>File ‹mapping_impl_generator.ML›</h1>
+</div>
+
+<pre class="source"><span class="comment1"><span>(* Author:  René Thiemann, UIBK *)</span></span><span>
+</span><span class="comment1"><span>(* This generator was written as part of the IsaFoR/CeTA formalization. *)</span></span><span>
+
+</span><span class="keyword1"><span class="keyword"><span>signature</span></span></span><span> </span><span class="entity"><span>MAPPING_IMPL_GENERATOR</span></span><span> </span><span class="main"><span>=</span></span><span> 
+</span><span class="keyword2"><span class="keyword"><span>sig</span></span></span><span> 
+  
+  </span><span class="comment1"><span>(* chooses a mapping implementation for a given type *)</span></span><span>
+  </span><span class="keyword1"><span class="keyword"><span>val</span></span></span><span> derive_mapping_impl </span><span class="main"><span>:</span></span><span> </span><span>string</span><span> </span><span class="main"><span>-&gt;</span></span><span> </span><span>string</span><span> </span><span class="main"><span>-&gt;</span></span><span> </span><span>theory</span><span> </span><span class="main"><span>-&gt;</span></span><span> </span><span>theory</span><span>
+
+</span><span class="keyword2"><span class="keyword"><span>end</span></span></span><span>
+
+</span><span class="keyword1"><span class="keyword"><span>structure</span></span></span><span> </span><span class="entity"><span>Mapping_Impl_Generator</span></span><span> </span><span class="main"><span>:</span></span><span> </span><span class="entity"><span>MAPPING_IMPL_GENERATOR</span></span><span> </span><span class="main"><span>=</span></span><span> 
+</span><span class="keyword2"><span class="keyword"><span>struct</span></span></span><span>
+</span><span class="keyword3"><span class="keyword"><span>open</span></span></span><span> </span><span>Containers_Generator</span><span class="main"><span>;</span></span><span> 
+
+</span><span class="keyword1"><span class="keyword"><span>val</span></span></span><span> </span><span class="entity"><span>supported_mapping_impl</span></span><span> </span><span class="main"><span>=</span></span><span> </span><span class="main"><span>[</span></span><span>
+  </span><span class="main"><span>(</span></span><span class="inner_quoted"><span>"rbt"</span></span><span class="main"><span>,</span></span><span> </span><span class="antiquoted"><span class="antiquote"><span>@{</span></span><span class="operator"><span>term</span></span><span> </span><span class="quoted"><a class="entity_ref" href="../../Containers.Mapping_Impl.html#Mapping_Impl.mapping_RBT|const"><span>mapping_RBT</span></a></span><span class="antiquote"><span>}</span></span></span><span class="main"><span>)</span></span><span class="main"><span>,</span></span><span>
+  </span><span class="main"><span>(</span></span><span class="inner_quoted"><span>"assoclist"</span></span><span class="main"><span>,</span></span><span> </span><span class="antiquoted"><span class="antiquote"><span>@{</span></span><span class="operator"><span>term</span></span><span> </span><span class="quoted"><a class="entity_ref" href="../../Containers.Mapping_Impl.html#Mapping_Impl.mapping_Assoc_List|const"><span>mapping_Assoc_List</span></a></span><span class="antiquote"><span>}</span></span></span><span class="main"><span>)</span></span><span class="main"><span>,</span></span><span>
+  </span><span class="main"><span>(</span></span><span class="inner_quoted"><span>"mapping"</span></span><span class="main"><span>,</span></span><span> </span><span class="antiquoted"><span class="antiquote"><span>@{</span></span><span class="operator"><span>term</span></span><span> </span><span class="quoted"><a class="entity_ref" href="../../Containers.Mapping_Impl.html#Mapping_Impl.mapping_Mapping|const"><span>mapping_Mapping</span></a></span><span class="antiquote"><span>}</span></span></span><span class="main"><span>)</span></span><span class="main"><span>,</span></span><span>
+  </span><span class="main"><span>(</span></span><span class="inner_quoted"><span>"choose"</span></span><span class="main"><span>,</span></span><span> </span><span class="antiquoted"><span class="antiquote"><span>@{</span></span><span class="operator"><span>term</span></span><span> </span><span class="quoted"><a class="entity_ref" href="../../Containers.Mapping_Impl.html#Mapping_Impl.mapping_Choose|const"><span>mapping_Choose</span></a></span><span class="antiquote"><span>}</span></span></span><span class="main"><span>)</span></span><span>
+  </span><span class="main"><span>]</span></span><span> 
+
+</span><span class="keyword1"><span class="keyword"><span>val</span></span></span><span> </span><span class="entity"><span>derive_mapping_impl</span></span><span> </span><span class="main"><span>=</span></span><span> </span><span class="entity"><span>derive_set_map_impl</span></span><span> </span><span class="antiquoted"><span class="antiquote"><span>@{</span></span><span class="operator"><span>const_name</span></span><span> </span><a class="entity_ref" href="../../Containers.Mapping_Impl.html#Mapping_Impl.mapping_impl_class.mapping_impl|const"><span>mapping_impl</span></a><span class="antiquote"><span>}</span></span></span><span> </span><span class="antiquoted"><span class="antiquote"><span>@{</span></span><span class="operator"><span>sort</span></span><span> </span><span class="quoted"><a class="entity_ref" href="../../Containers.Mapping_Impl.html#Mapping_Impl.mapping_impl|class"><span>mapping_impl</span></a></span><span class="antiquote"><span>}</span></span></span><span>
+  </span><span class="entity"><span>supported_mapping_impl</span></span><span>
+
+</span><span class="keyword1"><span class="keyword"><span>val</span></span></span><span> </span><span class="main"><span>_</span></span><span> </span><span class="main"><span>=</span></span><span> </span><span>Theory.setup</span><span> 
+  </span><span class="main"><span>(</span></span><span class="entity"><span>Derive_Manager.register_derive</span></span><span> </span><span class="inner_quoted"><span>"mapping_impl"</span></span><span> 
+    </span><span class="main"><span>(</span></span><span class="inner_quoted"><span>"choose "</span></span><span> </span><span>^</span><span> </span><span class="entity"><span>Generator_Aux.alist_to_string</span></span><span> </span><span class="entity"><span>supported_mapping_impl</span></span><span> </span><span>^</span><span> 
+     </span><span class="inner_quoted"><span>" or any constant of type mapping_impl for a datatype"</span></span><span class="main"><span>)</span></span><span> </span><span class="entity"><span>derive_mapping_impl</span></span><span class="main"><span>)</span></span><span>
+
+</span><span class="keyword2"><span class="keyword"><span>end</span></span></span><span>
+</span></pre>
+</body>
+
+</html>

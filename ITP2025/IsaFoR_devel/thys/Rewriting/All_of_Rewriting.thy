@@ -1,0 +1,32 @@
+(* Automatically generated file, do not change *)
+theory All_of_Rewriting
+  imports
+    Abstract_Unification_More
+    Context_Sensitive
+    Context_Sensitive_Impl
+    Context_Substitution
+    Critical_Pairs_Innermost
+    DP_Transformation
+    Forbidden_Patterns
+    Ground_Context
+    Ground_Context_Impl
+    Matching_Impl
+    Mgu_generic
+    More_Abstract_Rewriting
+    Multihole_Context_Impl
+    Multihole_Context_Transfer
+    Outermost_Rewriting
+    QDP_Framework
+    Q_Relative_Rewriting
+    Q_Restricted_Rewriting
+    Q_Restricted_Rewriting_Impl
+    Renaming
+    Renaming_Interpretations
+    Rule_Map
+    Sharp_Syntax
+    Signature_Extension
+    Tcap
+    Tcap_Impl
+    Trs_Impl_More
+begin
+end

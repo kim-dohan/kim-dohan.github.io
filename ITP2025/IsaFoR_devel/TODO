@@ -1,0 +1,20 @@
+* use "vars_term_impl" (and same for funs/funas/roots/funas_args and rule/trs)
+  instead of "vars_term_list in "implementations" (i.e., for code generation).
+  The former is supposed to provide a reasonably efficient implementation for
+  set-based abstract functions, while the latter is used when order and
+  multiplicity are wanted. Gradually replace "_list" by "_impl", when intended.
+* gradually get rid of "+#+" and "+@+". The former is "shows x o y" the latter
+  "x o y", which is easier to read and more familiar to the average user.
+* gradually try to avoid references to _Impl theories in non _Impl theories.
+  Move definitions and facts if necessary.
+* dissolve Decomp and SubList into other theories
+* merge RPO_Impl with RPO_Memoized
+* think about whether Positions should become [nat]
+* gradually improve "interface" and docu (to facilitate 3rd party contributions)
+* gradually get rid of TODOs (cf. output of ./todos.sh)
+* improve uncurrying (strategy, relative rules with top-uncurrying)
+* improve techniques where weak rules are silently treated as strict rules:
+  - Matchbounds
+* Replace lemmas about sharp/plain/unsharp/clean by general lemmas about
+  map_term, map_subst, ...
+* define sharp/plain/unsharp/clean via map functions.
